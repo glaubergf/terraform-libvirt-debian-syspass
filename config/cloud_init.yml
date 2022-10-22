@@ -1,0 +1,51 @@
+#cloud-config
+# vim: syntax=yaml
+# examples:
+# https://cloudinit.readthedocs.io/en/latest/topics/examples.html
+
+bootcmd:
+  - echo 192.168.0.1 gw.homedns.xyz >> /etc/hosts
+  - hostname tf-kvm-syspass
+
+runcmd:
+  - apt-get --yes upgrade
+  - apt-get --yes install 
+
+ssh_pwauth: true
+
+disable_root: false
+
+chpasswd:
+  list: |
+     root:toor
+     syspass:syspass123
+  expire: false
+
+users:
+  - name: syspass
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users, admin
+    home: /home/syspass
+    shell: /bin/bash
+    lock_passwd: false
+    ssh-authorized-keys:
+      - ssh-rsa AAAAc3NzaC1yc2EAAAADAQABAAABAQCvKFkO8w8BQJ3gwz3AIUeha3iUbMeDYTGPZOlMktpnyg6iRnFG9x2Xa6zFg+ZS2UhClBufyF292w0LmAwB5DnT+9pSvkfbq2GUoOmSyZAYH42/ungOzMwjNTlbwj9920p+fXO9+0zlh+GwS2JvSl3jVvgesdqzFagBHXpiCn54umzbWbeg4JT2dz9lZQsZbHLCXmbge7uwsR5I3+fwefu531H6n/YvoaWji7x2nCHyZ1LOYWabcrmK/ChyEiN5Esfo8u/7AekxLcLpH+zBe+r5V9iTtj+mjjcctEYK4ToruHYcU/hLekP7mCo5O6lAokpJ8qXIm748igD6BB/AHzB Debian Desktop access host tf-kvm-syspass
+
+packages:
+  - python3
+  - python2-minimal
+  - cmatrix
+  - ethstatus
+  - s-tui
+  - lm-sensors
+  - neofetch
+  - dnsutils
+  - htop
+
+package_update: true
+
+package_upgrade: true
+
+#package_reboot_if_required: true
+
+#final_message: "The system is finally up, after $UPTIME seconds"
