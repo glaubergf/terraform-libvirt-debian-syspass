@@ -8,7 +8,7 @@ Atualização: 2022-10-22
 
 # Provisionar uma Máquina Virtual com o libvirt (KVM)
 
-![Image](https://github.com/glaubergf/terraform-libvirt-debian-syspass/blob/main/pictures/vm_syspass.jpg)
+![Image](https://github.com/glaubergf/terraform-libvirt-debian-syspass/blob/main/pictures/vm_syspass.png)
 
 ## O projeto [**libvirt**](https://libvirt.org/)
 
